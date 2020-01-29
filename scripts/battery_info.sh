@@ -19,7 +19,22 @@ get_battery() {
 	fi
 
 	battery=$ICON' '"$BATTERY"' %'
-	echo "$battery"
+
+	echo $battery
+}
+
+git_branch() {
+
+	if git rev-parse --git-dir > /dev/null; then
+		branch=$(git rev-parse --abbrev-ref HEAD)
+
+		echo $branch
+
+	  else
+		  exit;
+	fi;
 }
 
 get_battery
+
+git_branch
