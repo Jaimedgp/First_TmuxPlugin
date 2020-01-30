@@ -1,26 +1,25 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 get_battery() {
 	BATTERY=$(cat /sys/class/power_supply/BAT0/capacity)
 	STATUS=$(cat /sys/class/power_supply/BAT0/status)
 
-	HEART="♥"
-	NoHEART="♡"
+	HEART="♥ "
+	NoHEART="♡ "
 	#InPOWER=
 
 	if [[ "$STATUS" == *"Charging"* ]];
 	then
-		ICON=♡
+		ICON="♡ "
 
 	elif [[ "$STATUS" == *"Discharging"* ]];
 	then
-		ICON=♥
+		ICON="♥ "
 
 	fi
 
-	battery=$ICON' '"$BATTERY"' %'
-
-	echo $battery
+	local string=$ICON" "$BATTERY" %"
+	echo "$string"
 }
 
 git_branch() {
@@ -28,13 +27,11 @@ git_branch() {
 	if git rev-parse --git-dir > /dev/null; then
 		branch=$(git rev-parse --abbrev-ref HEAD)
 
-		echo $branch
-
-	  else
-		  exit;
+	else
+		branch=""
+		exit;
 	fi;
+
+	local string=$branch
+	echo "$string"
 }
-
-get_battery
-
-git_branch

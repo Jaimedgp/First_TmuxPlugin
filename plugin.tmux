@@ -1,6 +1,9 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-source "$CURRENT_DIR/scripts/battery_info.sh"
+source "$CURRENT_DIR/scripts/info.sh"
 
-tmux set -g status-right " |    ⎇  ${branch} |    ${battery}"
+battery="#[fg=colour196, bg=colour240, bold]|    $($CURRENT_DIR/scripts/battery.sh)   "
+
+
+tmux set -g status-right "$battery"
