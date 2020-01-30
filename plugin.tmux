@@ -7,13 +7,13 @@ branch="$($CURRENT_DIR/scripts/branch.sh)"
 battery="$($CURRENT_DIR/scripts/battery.sh)"
 #battery="#[fg=colour196, bg=colour240, bold]|    $($CURRENT_DIR/scripts/battery.sh)   "
 
-branch_interpolation="\#{branch}"
 battery_interpolation="\#{battery}"
+branch_interpolation="\#{branch}"
 
 do_interpolation() {
 	local output="$1"
-	local output=${output/$branch_interpolation/$branch}
 	local output=${output/$battery_interpolation/$battery}
+	local output=${output/$branch_interpolation/$branch}
 	echo "$output"
 }
 
