@@ -42,12 +42,11 @@ get_battery() {
 
 git_branch() {
 
-	if git rev-parse --git-dir > /dev/null; then
+	if git rev-parse --git-dir > /dev/null 2> /dev/null; then
 		branch=$(git rev-parse --abbrev-ref HEAD)
 
 	else
 		branch=""
-		exit;
 	fi;
 
 	local string=$branch
